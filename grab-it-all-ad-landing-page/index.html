@@ -88,7 +88,7 @@ h1 span:nth-child(3) { color: var(--sun); }
 .cta { position: relative; display: grid; justify-items: center; width: 100%; }
 .play.tap { transform: translateY(4px); box-shadow: 0 2px 0 var(--grass-deep); }
 .hand { position: absolute; width: 3.6rem; right: 12%; bottom: -2.4rem; opacity: 0; pointer-events: none; transform-origin: 30% 10%; }
-.hand.go { animation: hand 1.6s ease-in-out 3; }
+.hand.go { animation: hand 1.6s ease-in-out infinite; }
 @keyframes hand {
   0% { opacity: 0; transform: translate(40px, 40px) rotate(-10deg); }
   25% { opacity: 1; transform: translate(0, 0) rotate(-10deg); }
@@ -135,7 +135,7 @@ h1 span:nth-child(3) { color: var(--sun); }
 </header>
 
 <script>
-// On load, scroll to the install button; the moment scrolling ends, show a hand tapping it (3 times).
+// On load, scroll to the install button; the moment scrolling ends, loop a hand tapping it.
 window.addEventListener('load', function () {
   var btn = document.getElementById('play'), hand = document.querySelector('.hand');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -144,9 +144,8 @@ window.addEventListener('load', function () {
     if (started || reduce) return;
     started = true;
     hand.classList.add('go');
-    [0, 1, 2].forEach(function (k) {  // press lands at 40% of each 1.6s hand cycle
-      setTimeout(function () { btn.classList.add('tap'); setTimeout(function () { btn.classList.remove('tap'); }, 200); }, 640 + k * 1600);
-    });
+    function press() { btn.classList.add('tap'); setTimeout(function () { btn.classList.remove('tap'); }, 200); }
+    setTimeout(function () { press(); setInterval(press, 1600); }, 640);  // press lands at 40% of each 1.6s hand cycle, forever
   }
   var target = document.documentElement.scrollHeight - window.innerHeight;
   if (target <= window.scrollY + 2) { tapHint(); return; }  // button already on screen
