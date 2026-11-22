@@ -135,20 +135,24 @@ h1 span:nth-child(3) { color: var(--sun); }
 </header>
 
 <script>
-// After load, bring the install button into view, then show a hand tapping it (3 times).
+// On load, scroll to the install button; the moment scrolling ends, show a hand tapping it (3 times).
 window.addEventListener('load', function () {
   var btn = document.getElementById('play'), hand = document.querySelector('.hand');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  setTimeout(function () {
-    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: reduce ? 'auto' : 'smooth' });
-    setTimeout(function () {
-      if (reduce) return;
-      hand.classList.add('go');
-      [0, 1, 2].forEach(function (k) {  // press lands at 40% of each 1.6s hand cycle
-        setTimeout(function () { btn.classList.add('tap'); setTimeout(function () { btn.classList.remove('tap'); }, 200); }, 640 + k * 1600);
-      });
-    }, 900);
-  }, 0);
+  var started = false;
+  function tapHint() {
+    if (started || reduce) return;
+    started = true;
+    hand.classList.add('go');
+    [0, 1, 2].forEach(function (k) {  // press lands at 40% of each 1.6s hand cycle
+      setTimeout(function () { btn.classList.add('tap'); setTimeout(function () { btn.classList.remove('tap'); }, 200); }, 640 + k * 1600);
+    });
+  }
+  var target = document.documentElement.scrollHeight - window.innerHeight;
+  if (target <= window.scrollY + 2) { tapHint(); return; }  // button already on screen
+  window.addEventListener('scrollend', tapHint, { once: true });
+  setTimeout(tapHint, 1200);  // fallback for browsers without the scrollend event
+  window.scrollTo({ top: target, behavior: reduce ? 'auto' : 'smooth' });
 });
 </script>
 </body>
