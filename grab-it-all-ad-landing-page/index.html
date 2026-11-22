@@ -46,7 +46,8 @@ body {
 .hero {
   margin-top: calc(-1 * env(safe-area-inset-top, 0px));
   padding-top: calc(env(safe-area-inset-top, 0px) + 2rem);
-  padding-bottom: 1.5rem;
+  padding-bottom: 2.5rem;
+  min-height: 100vh;
   background:
     repeating-conic-gradient(from 0deg at 50% 38%, #ffffff22 0deg 10deg, transparent 10deg 20deg),
     linear-gradient(var(--sky), var(--sky-deep) 140%);
@@ -98,29 +99,6 @@ h1 span:nth-child(3) { color: var(--sun); }
 }
 .phone video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-main { padding-block: 1.75rem 2.5rem; }
-main .wrap { display: grid; gap: 1.25rem; }
-.card {
-  background: var(--card);
-  border: 4px solid var(--ink);
-  border-radius: 22px;
-  padding: 1.1rem 1.2rem;
-  box-shadow: 0 6px 0 #4a2f2a2e;
-}
-h2 { margin: 0 0 0.6rem; font: 700 1.5rem/1.2 var(--display); text-wrap: balance; }
-.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin: 0; padding: 0; list-style: none; }
-.facts li { display: grid; gap: 0.15rem; min-width: 0; }
-.facts b { font: 700 1.1rem/1.2 var(--display); }
-.facts span { font-size: 0.95rem; color: var(--muted); }
-.worlds { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.4rem 0 0; padding: 0; list-style: none; }
-.worlds li { padding: 0.25rem 0.75rem; border-radius: 999px; color: #fff; font: 600 0.95rem/1.4 var(--display); border: 2px solid #fff; }
-.shots { display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 0.5rem; scroll-snap-type: x mandatory; }
-.shots img { width: 9.5rem; flex: none; border-radius: 14px; border: 3px solid var(--ink); scroll-snap-align: start; }
-.cta { display: grid; justify-items: center; gap: 0.6rem; text-align: center; }
-footer { padding-block: 0 2rem; text-align: center; font-size: 0.92rem; }
-footer .wrap { display: grid; gap: 0.3rem; }
-footer a { color: var(--ink); font-weight: 700; }
-@media (max-width: 380px) { .facts { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .play { transition: none; } }
 </style>
 </head>
@@ -141,56 +119,5 @@ footer a { color: var(--ink); font-weight: 700; }
   </div>
 </header>
 
-<main>
-  <div class="wrap">
-    <section class="card">
-      <h2>What's inside</h2>
-      <ul class="facts">
-        <li><b>Endless levels</b><span>15 hand-made, then new ones forever</span></li>
-        <li><b>Boss fights</b><span>A giant spiky boss every 10 levels</span></li>
-        <li><b>Daily Challenge</b><span>A new level each day, same for everyone</span></li>
-        <li><b>Power-ups</b><span>Magnet, shield, speed boots, freeze</span></li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Six worlds</h2>
-      <ul class="worlds">
-        <li style="background:#ff6f91">Fruit Garden</li>
-        <li style="background:#2fa8bd">Sunny Beach</li>
-        <li style="background:#b071e6">Candy Land</li>
-        <li style="background:#5a5fb8">Twilight Park</li>
-        <li style="background:#d98a3d">Autumn Woods</li>
-        <li style="background:#7fa9d6">Snowy Peaks</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Screenshots</h2>
-      <div class="shots">
-        <img src="shot1.jpg" alt="Sunny Beach level with crabs" loading="lazy" width="540" height="960">
-        <img src="shot2.jpg" alt="Candy Land conveyor belts" loading="lazy" width="540" height="960">
-        <img src="shot3.jpg" alt="Boss level" loading="lazy" width="540" height="960">
-        <img src="shot4.jpg" alt="Twilight Park in the dark" loading="lazy" width="540" height="960">
-        <img src="shot5.jpg" alt="Snowy Peaks with rolling snowballs" loading="lazy" width="540" height="960">
-      </div>
-    </section>
-
-    <div class="cta">
-      <a class="play" href="https://play.google.com/store/apps/details?id=com.rohdev.io.grabitall&amp;referrer=utm_source%3Dinstagram%26utm_medium%3Dpaid_social%26utm_campaign%3Dlaunch_reel">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 3.5v17a1 1 0 0 0 1.5.86l14.2-8.5a1 1 0 0 0 0-1.72L6.5 2.64A1 1 0 0 0 5 3.5z"/></svg>
-        Play free now
-      </a>
-    </div>
-  </div>
-</main>
-
-<footer>
-  <div class="wrap">
-    <p style="margin:0">Made by <b>RohDev.io</b></p>
-    <p style="margin:0"><a href="https://rohithdevelops.github.io/Privacy-Policy/MobileGame-grab-it-all-privacy-policy.html">Privacy policy</a></p>
-    <p style="margin:0">Contact: rohith.develops@gmail.com</p>
-  </div>
-</footer>
 </body>
 </html>
